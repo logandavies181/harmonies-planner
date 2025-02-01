@@ -10,7 +10,7 @@ import { Hexes } from "./hex.ts"
 
 function App() {
   return html`
-    <main class="flex flex-col min-w-screen" >
+    <main class="flex flex-col min-w-screen">
       <${Hexes} />
     </main>
   `

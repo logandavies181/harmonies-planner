@@ -1,4 +1,4 @@
-import { html } from "./html.ts";
+import { html } from "./html.ts"
 
 type HexType = "mid" | "first" | "alt"
 const mid = "mid"
@@ -23,33 +23,27 @@ export function Hex({ type }: HexProps) {
       break
   }
   return html`
-    <div class="flex align-center justify-center min-w-[16.67%] ${ml} -mb-[9.3%]" >
+    <div class="flex align-center justify-center min-w-[16.67%] ${ml} -mb-[9.3%]">
       <img src="hex.svg" />
     </div>
   `
 }
 
 function First() {
-  return html`
-    <${Hex} type="first" />
-  `
+  return html` <${Hex} type="first" /> `
 }
 
 function Alt() {
-  return html`
-    <${Hex} type="alt" />
-  `
+  return html` <${Hex} type="alt" /> `
 }
 
 function Mid() {
-  return html`
-    <${Hex} type="mid" />
-  `
+  return html` <${Hex} type="mid" /> `
 }
 
 export function Hexes() {
   return html`
-    <div class="flex grow flex-wrap min-w-full" >
+    <div class="flex grow flex-wrap min-w-full">
       <${First} />
       <${Mid} />
       <${Mid} />

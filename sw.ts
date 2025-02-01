@@ -8,27 +8,20 @@ const sv = "0.1.0"
 const webCache = `web-${sv}`
 
 // TODO: static check here
-const urlsToCache = [
-  "index.html",
-  "favicon.svg",
-  "main.js",
-  "output.css",
-]
+const urlsToCache = ["index.html", "favicon.svg", "main.js", "output.css"]
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches
-      .open(webCache)
-      .then(cache => {
-        return cache.addAll(urlsToCache)
-      })
+    caches.open(webCache).then((cache) => {
+      return cache.addAll(urlsToCache)
+    }),
   )
 })
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((request) => {
       return request || fetch(event.request)
-    })
+    }),
   )
 })
