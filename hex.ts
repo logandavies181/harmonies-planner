@@ -42,7 +42,8 @@ export function Hex({ type, bot }: HexProps) {
         }
         break
       case animalMode:
-        setShowAnimal(true)
+        console.log("animal mode")
+        setShowAnimal(!showAnimal)
         break
     }
   }
@@ -76,7 +77,7 @@ export function Hex({ type, bot }: HexProps) {
         />
 
         ${showAnimal
-          ? `
+          ? html`
           <circle
             fill="yellow"
             cx="51"

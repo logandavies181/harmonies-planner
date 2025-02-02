@@ -27,6 +27,7 @@ type ButtonProps = {
   colour: string
   hoverColour: string
   focusColour: string
+  clickFn: () => void
 }
 
 function Button(props: ButtonProps) {
@@ -38,7 +39,7 @@ function Button(props: ButtonProps) {
       <button
         type="button"
         class="grow justify-self-center focus:outline-none text-white text-lg ${props.colour} ${props.hoverColour} focus:ring-4 ${props.focusColour} font-medium rounded-lg px-5 py-2.5 mx-1 my-1"
-        onClick=${onClick}
+        onClick=${props.clickFn ?? onClick}
       >
         ${props.text}
       </button>
@@ -128,7 +129,7 @@ function AnimalButton() {
       colour="bg-orange-500"
       hoverColour="hover:bg-orange-600"
       focusColour="focus:ring-orange-300"
-      onClick=${onClick}
+      clickFn=${onClick}
     />
   `
 }
