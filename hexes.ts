@@ -1,17 +1,32 @@
 import { html } from "./html.ts"
 
-import { alt, first, Hex, mid } from "./hex.ts"
+import { alt, first, Hex, HexProps, mid } from "./hex.ts"
 
-function First() {
-  return html` <${Hex} type=${first} /> `
+function First({ bot }: HexProps) {
+  return html`
+    <${Hex}
+      type=${first}
+      bot=${bot}
+    />
+  `
 }
 
-function Alt() {
-  return html` <${Hex} type=${alt} /> `
+function Alt({ bot }: HexProps) {
+  return html`
+    <${Hex}
+      type=${alt}
+      bot=${bot}
+    />
+  `
 }
 
-function Mid() {
-  return html` <${Hex} type=${mid} /> `
+function Mid({ bot }: HexProps) {
+  return html`
+    <${Hex}
+      type=${mid}
+      bot=${bot}
+    />
+  `
 }
 
 export function Hexes() {
@@ -38,10 +53,10 @@ export function Hexes() {
       <${Alt} />
       <${Mid} />
       <${Mid} />
-      <${First} />
-      <${Mid} />
-      <${Mid} />
-      <${Mid} />
+      <${First} bot />
+      <${Mid} bot />
+      <${Mid} bot />
+      <${Mid} bot />
     </div>
   `
 }

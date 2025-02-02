@@ -7,12 +7,13 @@ export const mid = "mid"
 export const first = "first"
 export const alt = "alt"
 
-type HexProps = {
+export type HexProps = {
   type: HexType
+  bot: boolean
 }
 
-export function Hex({ type }: HexProps) {
-  const [colour, setColour] = useState("lightblue")
+export function Hex({ type, bot }: HexProps) {
+  const [colour, setColour] = useState("white")
 
   let ml = ""
   switch (type) {
@@ -26,6 +27,10 @@ export function Hex({ type }: HexProps) {
       ml = "ml-[16.7%]"
       break
   }
+
+  const mb = bot ? "" : "-mb-[9.3%]"
+
+  console.log(bot)
 
   const onClick = () => {
     setColour("red")
@@ -45,9 +50,20 @@ export function Hex({ type }: HexProps) {
   }
 
   return html`
-    <div onClick=${otherClick} class="flex align-center justify-center min-w-[16.67%] ${ml} -mb-[9.3%]">
-      <svg viewBox="0 0 102 102" xmlns="http://www.w3.org/2000/svg">
-        <polygon onClick=${onClick} points="101,51, 76,94.3 26,94.3  1,51 26,7.7 76,7.7" fill=${colour} stroke-width="2" />
+    <div
+      onClick=${otherClick}
+      class="flex align-center justify-center min-w-[16.67%] ${ml} ${mb}"
+    >
+      <svg
+        viewBox="0 0 102 102"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <polygon
+          onClick=${onClick}
+          points="101,51, 76,94.3 26,94.3  1,51 26,7.7 76,7.7"
+          fill=${colour}
+          stroke-width="2"
+        />
       </svg>
     </div>
   `
