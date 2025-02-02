@@ -1,15 +1,19 @@
 import { html } from "./html.ts"
 
+import { useState } from "https://esm.sh/preact/hooks"
+
 type HexType = "mid" | "first" | "alt"
-const mid = "mid"
-const first = "first"
-const alt = "alt"
+export const mid = "mid"
+export const first = "first"
+export const alt = "alt"
 
 type HexProps = {
   type: HexType
 }
 
 export function Hex({ type }: HexProps) {
+  const [colour, setColour] = useState("lightblue")
+
   let ml = ""
   switch (type) {
     case mid:
@@ -22,53 +26,29 @@ export function Hex({ type }: HexProps) {
       ml = "ml-[16.7%]"
       break
   }
+
+  const onClick = () => {
+    setColour("red")
+  }
+
+  // https://www.reddit.com/r/learnjavascript/comments/vuspsq/any_wayor_alternative_to_trigger_a_click_event_of/
+  // https://stackoverflow.com/questions/254302/how-can-i-determine-the-type-of-an-html-element-in-javascript
+  const otherClick = (e: MouseEvent) => {
+    console.log("fuck")
+    const elems = document.elementsFromPoint(e.clientX, e.clientY)
+    for (const elem of elems) {
+      if (elem.nodeName == "polygon") {
+        // https://stackoverflow.com/a/49571744/9783641
+        elem.dispatchEvent(new Event("click"))
+      }
+    }
+  }
+
   return html`
-    <div class="flex align-center justify-center min-w-[16.67%] ${ml} -mb-[9.3%]">
-      <img src="hex.svg" />
-    </div>
-  `
-}
-
-function First() {
-  return html` <${Hex} type="first" /> `
-}
-
-function Alt() {
-  return html` <${Hex} type="alt" /> `
-}
-
-function Mid() {
-  return html` <${Hex} type="mid" /> `
-}
-
-export function Hexes() {
-  return html`
-    <div class="flex grow flex-wrap min-w-full">
-      <${First} />
-      <${Mid} />
-      <${Mid} />
-      <${Mid} />
-      <${Alt} />
-      <${Mid} />
-      <${Mid} />
-      <${First} />
-      <${Mid} />
-      <${Mid} />
-      <${Mid} />
-      <${Alt} />
-      <${Mid} />
-      <${Mid} />
-      <${First} />
-      <${Mid} />
-      <${Mid} />
-      <${Mid} />
-      <${Alt} />
-      <${Mid} />
-      <${Mid} />
-      <${First} />
-      <${Mid} />
-      <${Mid} />
-      <${Mid} />
+    <div onClick=${otherClick} class="flex align-center justify-center min-w-[16.67%] ${ml} -mb-[9.3%]">
+      <svg viewBox="0 0 102 102" xmlns="http://www.w3.org/2000/svg">
+        <polygon onClick=${onClick} points="101,51, 76,94.3 26,94.3  1,51 26,7.7 76,7.7" fill=${colour} stroke-width="2" />
+      </svg>
     </div>
   `
 }

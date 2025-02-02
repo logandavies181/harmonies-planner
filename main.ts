@@ -2,7 +2,7 @@ import { render } from "https://esm.sh/preact"
 
 import { html } from "./html.ts"
 
-import { Hexes } from "./hex.ts"
+import { Hexes } from "./hexes.ts"
 
 // if ("serviceWorker" in navigator) {
 //   navigator.serviceWorker.register("sw.js", { scope: "/" })
