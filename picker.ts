@@ -11,7 +11,11 @@ export function Picker() {
       <${BlueButton} />
     </div>
     <div class="flex flex-row justify-center min-w-full">
-      <${GreenButton} />
+      <div class="grow" />
+      <div class="grow" />
+      <${AnimalButton} />
+      <div class="grow" />
+      <div class="grow" />
     </div>
   `
 }
@@ -25,12 +29,14 @@ type ButtonProps = {
 
 function Button(props: ButtonProps) {
   return html`
-    <button
-      type="button"
-      class="grow focus:outline-none text-white text-lg ${props.colour} ${props.hoverColour} focus:ring-4 ${props.focusColour} font-medium rounded-lg px-5 py-2.5 me-2 mb-2"
-    >
-      ${props.text}
-    </button>
+    <div class="flex grow justify-center" >
+      <button
+        type="button"
+        class="grow justify-self-center focus:outline-none text-white text-lg ${props.colour} ${props.hoverColour} focus:ring-4 ${props.focusColour} font-medium rounded-lg px-5 py-2.5 mx-1 my-1"
+      >
+        ${props.text}
+      </button>
+    </div>
   `
 }
 
@@ -49,9 +55,9 @@ function YellowButton() {
   return html`
     <${Button}
       text="Field"
-      colour="bg-yellow-700"
-      hoverColour="hover:bg-yellow-800"
-      focusColour="focus:ring-yellow-300"
+      colour="bg-amber-400"
+      hoverColour="hover:bg-amber-500"
+      focusColour="focus:ring-amber-300"
     />
   `
 }
@@ -96,6 +102,17 @@ function BrownButton() {
       colour="bg-yellow-800"
       hoverColour="hover:bg-amber-900"
       focusColour="focus:ring-yellow-700"
+    />
+  `
+}
+
+function AnimalButton() {
+  return html`
+    <${Button}
+      text="Animal"
+      colour="bg-orange-500"
+      hoverColour="hover:bg-orange-600"
+      focusColour="focus:ring-orange-300"
     />
   `
 }
