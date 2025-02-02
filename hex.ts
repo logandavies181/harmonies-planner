@@ -79,7 +79,7 @@ export function Hex({ type, bot }: HexProps) {
         ${showAnimal
           ? html`
               <circle
-                fill="yellow"
+                fill="#f5a400"
                 cx="51"
                 cy="51"
                 r="10"
