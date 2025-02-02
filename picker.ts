@@ -3,7 +3,7 @@ import { state } from "./state.ts"
 
 export function Picker() {
   return html`
-    <div class="flex flex-row justify-center min-w-full">
+    <div class="flex flex-wrap portrait:flex-row landscape:flex-col justify-center portrait:min-w-full">
       <${GreenButton} />
       <${BrownButton} />
       <${YellowButton} />
@@ -11,7 +11,7 @@ export function Picker() {
       <${GreyButton} />
       <${BlueButton} />
     </div>
-    <div class="flex flex-row justify-center min-w-full">
+    <div class="flex portrait:flex-row landscape:flex-col justify-center portrait:min-w-full">
       <div class="grow" />
       <div class="grow" />
       <${AnimalButton} />
@@ -35,10 +35,10 @@ function Button(props: ButtonProps) {
     state.setMode("colour", props.setColour)
   }
   return html`
-    <div class="flex grow justify-center">
+    <div class="flex justify-center">
       <button
         type="button"
-        class="grow justify-self-center focus:outline-none text-white text-lg ${props.colour} ${props.hoverColour} focus:ring-4 ${props.focusColour} font-medium rounded-lg px-5 py-2.5 mx-1 my-1"
+        class="grow justify-self-center focus:outline-none text-white text-sm md:text-lg ${props.colour} ${props.hoverColour} focus:ring-4 ${props.focusColour} font-medium rounded-lg px-5 py-2.5 mx-1 my-1"
         onClick=${props.clickFn ?? onClick}
       >
         ${props.text}

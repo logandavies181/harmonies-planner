@@ -4,11 +4,12 @@ alias c := check
 
 alias b := build
 @build: check
-    bun build main.ts --outdir dist
-    bun build sw.ts --outdir dist
-    #echo "\n// $(git rev-parse HEAD) $(uuidgen)" >> dist/sw.js # trigger reload
-    deno run -A npm:@tailwindcss/cli -o dist/output.css
-    cp public/hex.svg index.html manifest.json dist
+    mkdir -p dist/harmonies-planner
+    bun build main.ts --outdir dist/harmonies-planner
+    bun build sw.ts --outdir dist/harmonies-planner
+    echo "\n// $(git rev-parse HEAD) $(uuidgen)" >> dist/harmonies-planner/sw.js # trigger reload
+    deno run -A npm:@tailwindcss/cli -o dist/harmonies-planner/output.css
+    cp public/hex.svg index.html manifest.json dist/harmonies-planner
 
 alias s := serve
 @serve: build
@@ -19,7 +20,3 @@ alias s := serve
 alias f := fmt
 @fmt:
     deno run -A npm:prettier -w **/*.ts
-
-alias i := init
-@init:
-    deno run -A bin/init-env.ts

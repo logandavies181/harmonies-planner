@@ -31,7 +31,7 @@ function Mid({ bot }: HexProps) {
 
 export function Hexes() {
   return html`
-    <div class="flex grow flex-wrap min-w-full">
+    <div class="flex grow flex-wrap portrait:min-w-full landscape:min-w-[50%]">
       <${First} />
       <${Mid} />
       <${Mid} />

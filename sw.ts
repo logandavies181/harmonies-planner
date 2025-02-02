@@ -8,7 +8,7 @@ const sv = "0.1.0"
 const webCache = `web-${sv}`
 
 // TODO: static check here
-const urlsToCache = ["index.html", "favicon.svg", "main.js", "output.css"]
+const urlsToCache = ["index.html", "hex.svg", "main.js", "output.css"]
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
