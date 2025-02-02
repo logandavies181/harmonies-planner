@@ -78,13 +78,13 @@ export function Hex({ type, bot }: HexProps) {
 
         ${showAnimal
           ? html`
-          <circle
-            fill="yellow"
-            cx="51"
-            cy="51"
-            r="10"
-          />
-        `
+              <circle
+                fill="yellow"
+                cx="51"
+                cy="51"
+                r="10"
+              />
+            `
           : ""}
       </svg>
     </div>
