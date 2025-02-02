@@ -1,6 +1,6 @@
 import { html } from "./html.ts"
 
-import { useState } from "https://esm.sh/preact/hooks"
+import { useState } from "https://esm.sh/preact@10.25.3/hooks"
 
 type HexType = "mid" | "first" | "alt"
 export const mid = "mid"

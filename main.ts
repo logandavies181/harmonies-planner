@@ -1,4 +1,4 @@
-import { render } from "https://esm.sh/preact"
+import { render } from "https://esm.sh/preact@10.25.3"
 
 import { html } from "./html.ts"
 
