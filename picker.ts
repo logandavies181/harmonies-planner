@@ -1,5 +1,5 @@
 import { html } from "./html.ts"
-import { state } from "./state.ts";
+import { state } from "./state.ts"
 
 export function Picker() {
   return html`
@@ -34,7 +34,7 @@ function Button(props: ButtonProps) {
     state.setMode("colour", props.setColour)
   }
   return html`
-    <div class="flex grow justify-center" >
+    <div class="flex grow justify-center">
       <button
         type="button"
         class="grow justify-self-center focus:outline-none text-white text-lg ${props.colour} ${props.hoverColour} focus:ring-4 ${props.focusColour} font-medium rounded-lg px-5 py-2.5 mx-1 my-1"

@@ -1,7 +1,7 @@
 import { html } from "./html.ts"
 
 import { useState } from "https://esm.sh/preact@10.25.3/hooks"
-import { animalMode, colourMode, state } from "./state.ts";
+import { animalMode, colourMode, state } from "./state.ts"
 
 type HexType = "mid" | "first" | "alt"
 export const mid = "mid"
@@ -75,14 +75,16 @@ export function Hex({ type, bot }: HexProps) {
           stroke-width="2"
         />
 
-        ${ showAnimal ? `
+        ${showAnimal
+          ? `
           <circle
             fill="yellow"
             cx="51"
             cy="51"
             r="10"
           />
-        ` : ""}
+        `
+          : ""}
       </svg>
     </div>
   `
