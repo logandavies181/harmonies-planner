@@ -1,4 +1,4 @@
-import { Tile } from "./state.ts";
+import { Tile } from "./state.ts"
 
 export const Pallette = {
   Tree: "#008236",
@@ -10,7 +10,7 @@ export const Pallette = {
 } as const
 
 export function colourMap(tile: Tile): string {
-  switch(tile) {
+  switch (tile) {
     case Tile.Tree:
       return Pallette.Tree
     case Tile.Field:
@@ -29,8 +29,8 @@ export function colourMap(tile: Tile): string {
   }
 }
 
-export function colourToTile(colour: string|null) {
-  switch(colour) {
+export function colourToTile(colour: string | null) {
+  switch (colour) {
     case Pallette.Tree:
       return Tile.Tree
     case Pallette.Field:
@@ -50,7 +50,7 @@ export function colourToTile(colour: string|null) {
 }
 
 export function stackable(tile: Tile) {
-  switch(tile) {
+  switch (tile) {
     case Tile.Wood:
     case Tile.Brick:
     case Tile.Mountain:

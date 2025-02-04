@@ -2,7 +2,7 @@ import { html } from "./html.ts"
 
 import { Dispatch, StateUpdater, useState } from "https://esm.sh/preact@10.25.3/hooks"
 import { animalMode, colourMode, state, Tile } from "./state.ts"
-import { colourMap, colourToTile, stackable} from "./colourMap.ts"
+import { colourMap, colourToTile, stackable } from "./colourMap.ts"
 
 type HexType = "mid" | "first" | "alt"
 export const mid = "mid"
@@ -14,7 +14,12 @@ export type HexProps = {
   bot: boolean
 }
 
-function handleColourMode(_colour: string, newColour: Tile, _colourStack1: string|null, _colourStack2: string|null) {
+function handleColourMode(
+  _colour: string,
+  newColour: Tile,
+  _colourStack1: string | null,
+  _colourStack2: string | null,
+) {
   const colour = colourToTile(_colour)
   if (colour == Tile.Unset) {
     return [colourMap(newColour)]
@@ -23,10 +28,7 @@ function handleColourMode(_colour: string, newColour: Tile, _colourStack1: strin
   const colourStack1 = colourToTile(_colourStack1)
   const colourStack2 = colourToTile(_colourStack2)
 
-  const stackHeight =
-    colourStack2 ? 3
-    : colourStack1 ? 2
-    : 1
+  const stackHeight = colourStack2 ? 3 : colourStack1 ? 2 : 1
 
   if (!stackable(newColour)) {
     if (colour == newColour) {
@@ -41,7 +43,7 @@ function handleColourMode(_colour: string, newColour: Tile, _colourStack1: strin
 
   let bottomStackOk = (_: Tile) => false
   let middleStackOk = (_: Tile) => false
-  switch(newColour) {
+  switch (newColour) {
     case Tile.Tree: {
       bottomStackOk = (t) => t == Tile.Wood || t == Tile.Unset
       middleStackOk = bottomStackOk
@@ -49,11 +51,7 @@ function handleColourMode(_colour: string, newColour: Tile, _colourStack1: strin
   }
 
   if (bottomStackOk(colour) && middleStackOk(colourStack1)) {
-    return [
-      colourMap(newColour),
-      colourMap(colour),
-      _colourStack1 ? colourMap(colourStack1) : null,
-    ]
+    return [colourMap(newColour), colourMap(colour), _colourStack1 ? colourMap(colourStack1) : null]
   }
 
   console.log("couldn't stack")
@@ -65,8 +63,8 @@ function handleColourMode(_colour: string, newColour: Tile, _colourStack1: strin
 
 export function Hex({ type, bot }: HexProps) {
   const [colour, setColour] = useState("white")
-  const [colourStack1, setColourStack1] = useState<string|null>(null)
-  const [colourStack2, setColourStack2] = useState<string|null>(null)
+  const [colourStack1, setColourStack1] = useState<string | null>(null)
+  const [colourStack2, setColourStack2] = useState<string | null>(null)
   const [showAnimal, setShowAnimal] = useState(false)
 
   let ml = ""
@@ -87,7 +85,12 @@ export function Hex({ type, bot }: HexProps) {
   const onClick = () => {
     switch (state.mode) {
       case colourMode: {
-        const [newColour, newColourStack1, newColourStack2] = handleColourMode(colour, state.tile, colourStack1, colourStack2)
+        const [newColour, newColourStack1, newColourStack2] = handleColourMode(
+          colour,
+          state.tile,
+          colourStack1,
+          colourStack2,
+        )
         setColour(newColour!)
         setColourStack1(newColourStack1)
         setColourStack2(newColourStack2)
@@ -130,22 +133,20 @@ export function Hex({ type, bot }: HexProps) {
 
         ${colourStack1
           ? html`
-            <polygon
-              points="16,77.65 86,77.65 76,94.3 26,94.3"
-              fill=${colourStack1}
-            />
-          `
+              <polygon
+                points="16,77.65 86,77.65 76,94.3 26,94.3"
+                fill=${colourStack1}
+              />
+            `
           : ""}
-
         ${colourStack2
           ? html`
-            <polygon
-              points="6,61 96,61 86,77.65 16,77.65"
-              fill=${colourStack2}
-            />
-          `
+              <polygon
+                points="6,61 96,61 86,77.65 16,77.65"
+                fill=${colourStack2}
+              />
+            `
           : ""}
-
         ${showAnimal
           ? html`
               <circle
