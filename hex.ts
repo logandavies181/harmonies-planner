@@ -1,8 +1,8 @@
 import { html } from "./html.ts"
 
-import { Dispatch, StateUpdater, useState } from "https://esm.sh/preact@10.25.3/hooks"
+import { useState } from "https://esm.sh/preact@10.25.3/hooks"
 import { animalMode, colourMode, state, Tile } from "./state.ts"
-import { colourMap, colourToTile, stackable } from "./colourMap.ts"
+import { colourMap, colourMapMiddle, colourMapBottom, colourToTile, stackable } from "./colourMap.ts"
 
 type HexType = "mid" | "first" | "alt"
 export const mid = "mid"
@@ -26,9 +26,9 @@ function handleColourMode(
   }
 
   const colourStack1 = colourToTile(_colourStack1)
-  const colourStack2 = colourToTile(_colourStack2)
 
-  const stackHeight = colourStack2 ? 3 : colourStack1 ? 2 : 1
+  const stackHeight = _colourStack2 ? 3 : _colourStack1 ? 2 : 1
+  console.log(stackHeight)
 
   if (!stackable(newColour)) {
     if (colour == newColour) {
@@ -37,7 +37,11 @@ function handleColourMode(
     return [colourMap(newColour)]
   }
 
+  // max height, treat as if we can't stack
   if (stackHeight == 3) {
+    if (colour == newColour) {
+      return ["white"]
+    }
     return [colourMap(newColour)]
   }
 
@@ -47,11 +51,22 @@ function handleColourMode(
     case Tile.Tree: {
       bottomStackOk = (t) => t == Tile.Wood || t == Tile.Unset
       middleStackOk = bottomStackOk
+      break
+    }
+    case Tile.Wood: {
+      bottomStackOk = (t) => t == Tile.Wood || t == Tile.Unset
+      middleStackOk = bottomStackOk
+      break
     }
   }
 
-  if (bottomStackOk(colour) && middleStackOk(colourStack1)) {
-    return [colourMap(newColour), colourMap(colour), _colourStack1 ? colourMap(colourStack1) : null]
+  const shouldPush = () => {
+    return bottomStackOk(colour) && middleStackOk(colourStack1)
+  }
+  if (shouldPush()) {
+    console.log(_colourStack1)
+    console.log(colourStack1)
+    return [colourMap(newColour), colourMapBottom(colour), _colourStack1 ? colourMapMiddle(colourStack1) : null]
   }
 
   console.log("couldn't stack")
