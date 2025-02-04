@@ -2,19 +2,29 @@ export type mode = "animal" | "colour"
 export const animalMode = "animal"
 export const colourMode = "colour"
 
+export enum Tile {
+  Unset,
+  Tree,
+  Wood,
+  Field,
+  Brick,
+  Mountain,
+  Water,
+}
+
 class State {
   mode: mode = "colour"
-  colour: string = "white"
+  tile: Tile = Tile.Unset
 
-  setMode(mode: mode, colour?: string) {
+  setMode(mode: mode, tile?: Tile) {
     switch (mode) {
       case animalMode:
         this.mode = animalMode
-        this.colour = "white"
+        this.tile = Tile.Unset
         break
       case colourMode:
         this.mode = colourMode
-        this.colour = colour!
+        this.tile = tile!
         break
     }
   }

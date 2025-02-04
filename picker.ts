@@ -1,5 +1,5 @@
 import { html } from "./html.ts"
-import { state } from "./state.ts"
+import { state, Tile } from "./state.ts"
 
 export function Picker() {
   return html`
@@ -23,7 +23,7 @@ export function Picker() {
 
 type ButtonProps = {
   text: string
-  setColour: string
+  tile: Tile
   colour: string
   hoverColour: string
   focusColour: string
@@ -32,7 +32,7 @@ type ButtonProps = {
 
 function Button(props: ButtonProps) {
   const onClick = () => {
-    state.setMode("colour", props.setColour)
+    state.setMode("colour", props.tile)
   }
   return html`
     <div class="flex justify-center">
@@ -51,7 +51,7 @@ function GreenButton() {
   return html`
     <${Button}
       text="Tree"
-      setColour="#008236"
+      tile=${Tile.Tree}
       colour="bg-green-700"
       hoverColour="hover:bg-green-800"
       focusColour="focus:ring-green-300"
@@ -63,7 +63,7 @@ function YellowButton() {
   return html`
     <${Button}
       text="Field"
-      setColour="#ffb900"
+      tile=${Tile.Field}
       colour="bg-amber-400"
       hoverColour="hover:bg-amber-500"
       focusColour="focus:ring-amber-300"
@@ -75,7 +75,7 @@ function RedButton() {
   return html`
     <${Button}
       text="Brick"
-      setColour="#c10007"
+      tile=${Tile.Brick}
       colour="bg-red-700"
       hoverColour="hover:bg-red-800"
       focusColour="focus:ring-red-300"
@@ -87,7 +87,7 @@ function GreyButton() {
   return html`
     <${Button}
       text="Mountain"
-      setColour="#364153"
+      tile=${Tile.Mountain}
       colour="bg-gray-700"
       hoverColour="hover:bg-gray-800"
       focusColour="focus:ring-gray-300"
@@ -99,7 +99,7 @@ function BlueButton() {
   return html`
     <${Button}
       text="Water"
-      setColour="#193cb8"
+      tile=${Tile.Water}
       colour="bg-blue-700"
       hoverColour="hover:bg-blue-800"
       focusColour="focus:ring-blue-300"
@@ -111,7 +111,7 @@ function BrownButton() {
   return html`
     <${Button}
       text="Wood"
-      setColour="#894b00"
+      tile=${Tile.Wood}
       colour="bg-yellow-800"
       hoverColour="hover:bg-amber-900"
       focusColour="focus:ring-yellow-700"
