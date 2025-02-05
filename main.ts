@@ -11,7 +11,7 @@ if ("serviceWorker" in navigator) {
 
 function App() {
   return html`
-    <main class="flex portrait:flex-col landscape:flex-row portrait:min-w-screen landscape:min-w-[50%]">
+    <main class="flex items-center portrait:flex-col landscape:flex-row portrait:min-w-screen landscape:min-w-[50%]">
       <${Hexes} />
       <${Picker} />
     </main>

@@ -1,5 +1,5 @@
 import { html } from "./html.ts"
-import { state, Tile } from "./state.ts"
+import { IslandsTopic, state, Tile } from "./state.ts"
 
 export function Picker() {
   return html`
@@ -16,6 +16,8 @@ export function Picker() {
       <div class="grow" />
       <${AnimalButton} />
       <div class="grow" />
+      <div class="grow" />
+      <${RotateButton} />
       <div class="grow" />
     </div>
   `
@@ -129,6 +131,21 @@ function AnimalButton() {
       colour="bg-orange-500"
       hoverColour="hover:bg-orange-600"
       focusColour="focus:ring-orange-300"
+      clickFn=${onClick}
+    />
+  `
+}
+
+function RotateButton() {
+  const onClick = () => {
+    IslandsTopic.Publish()
+  }
+  return html`
+    <${Button}
+      text="Rotate"
+      colour="bg-gray-500"
+      hoverColour="hover:bg-gray-300"
+      focusColour="focus:ring-gray-100"
       clickFn=${onClick}
     />
   `

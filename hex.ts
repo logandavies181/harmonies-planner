@@ -4,10 +4,12 @@ import { useState } from "https://esm.sh/preact@10.25.3/hooks"
 import { animalMode, colourMode, state, Tile } from "./state.ts"
 import { colourMap, colourMapMiddle, colourMapBottom, colourToTile, stackable } from "./colourMap.ts"
 
-type HexType = "mid" | "first" | "alt"
+type HexType = "mid" | "first" | "alt" | "otherFirst" | "otherAlt"
 export const mid = "mid"
 export const first = "first"
+export const otherFirst = "otherFirst"
 export const alt = "alt"
+export const otherAlt = "otherAlt"
 
 export type HexProps = {
   type: HexType
@@ -103,6 +105,12 @@ export function Hex({ type, bot }: HexProps) {
     case alt:
       ml = "ml-[16.7%]"
       break
+    case otherAlt:
+      ml = "ml-[29.24%]"
+      break
+    case otherFirst:
+      ml = "ml-[16.7%]"
+      break
   }
 
   const mb = bot ? "" : "-mb-[9.3%]"
@@ -143,7 +151,7 @@ export function Hex({ type, bot }: HexProps) {
   return html`
     <div
       onClick=${otherClick}
-      class="flex align-center justify-center min-w-[16.67%] ${ml} ${mb}"
+      class="flex items-center align-center justify-center min-w-[16.67%] ${ml} ${mb}"
     >
       <svg
         viewBox="0 0 102 102"
