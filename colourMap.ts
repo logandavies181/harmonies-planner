@@ -6,6 +6,8 @@ export const Pallette = {
   Brick: "#c10007",
   BrickBottom: "#82181a",
   Mountain: "#364153",
+  MountainMiddle: "#2a2627",
+  MountainBottom: "#1b1718",
   Water: "#193cb8",
   Wood: "#894b00",
   WoodMiddle: "#733e0a",
@@ -41,7 +43,7 @@ export function colourMapMiddle(tile: Tile): string {
     case Tile.Brick:
       return Pallette.Brick
     case Tile.Mountain:
-      return Pallette.Mountain
+      return Pallette.MountainMiddle
     case Tile.Water:
       return Pallette.Water
     case Tile.Wood:
@@ -61,7 +63,7 @@ export function colourMapBottom(tile: Tile): string {
     case Tile.Brick:
       return Pallette.BrickBottom
     case Tile.Mountain:
-      return Pallette.Mountain
+      return Pallette.MountainBottom
     case Tile.Water:
       return Pallette.Water
     case Tile.Wood:
@@ -82,6 +84,8 @@ export function colourToTile(colour: string | null) {
     case Pallette.BrickBottom:
       return Tile.Brick
     case Pallette.Mountain:
+    case Pallette.MountainMiddle:
+    case Pallette.MountainBottom:
       return Tile.Mountain
     case Pallette.Water:
       return Tile.Water

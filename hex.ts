@@ -55,7 +55,17 @@ function handleColourMode(
     }
     case Tile.Wood: {
       bottomStackOk = (t) => t == Tile.Wood || t == Tile.Unset
+      middleStackOk = (t) => t == Tile.Unset
+      break
+    }
+    case Tile.Mountain: {
+      bottomStackOk = (t) => t == Tile.Mountain || t == Tile.Unset
       middleStackOk = bottomStackOk
+      break
+    }
+    case Tile.Brick: {
+      bottomStackOk = (t) => t == Tile.Mountain || t == Tile.Unset || t == Tile.Brick || t == Tile.Wood
+      middleStackOk = (t) => t == Tile.Unset
       break
     }
   }
