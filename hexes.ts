@@ -1,8 +1,8 @@
 import { html } from "./html.ts"
 
 import { alt, first, otherAlt, otherFirst, Hex, HexProps, mid } from "./hex.ts"
-import { useState } from "https://esm.sh/preact@10.25.3/hooks";
-import { IslandsTopic } from "./state.ts";
+import { useState } from "https://esm.sh/preact@10.25.3/hooks"
+import { IslandsTopic } from "./state.ts"
 
 function First({ bot }: HexProps) {
   return html`
